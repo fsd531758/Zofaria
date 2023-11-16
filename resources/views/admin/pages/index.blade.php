@@ -58,7 +58,6 @@
                     <th>{{ __('words.image') }}</th>
                     <th>{{ __('words.title') }}</th>
                     <th>{{ __('words.sub_title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     {{--                    <th>{{__('words.identifier')}}</th> --}}
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -90,7 +89,6 @@
                         </td>
                         <td>{{ $page->title }}</td>
                         <td>{{ $page->sub_title }}</td>
-                        <td>{!! $page->description !!}</td>
                         {{--                        <td>{{$page->identifier}}</td> --}}
                         <td>{{ formatDate($page->created_at) }}</td>
                         <td>{{ formatDate($page->created_at) == formatDate($page->updated_at) ? '--' : formatDate($page->updated_at) }}

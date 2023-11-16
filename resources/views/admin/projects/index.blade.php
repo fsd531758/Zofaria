@@ -57,7 +57,6 @@
                     <th>#</th>
                     <th>{{ __('words.cover') }}</th>
                     <th>{{ __('words.title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     <th>{{ __('words.status') }}</th>
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -89,7 +88,6 @@
                             @endif
                         </td>
                         <td>{{ $project->title }}</td>
-                        <td>{!! Str::limit($project->description, 100) !!}</td>
                         <td><span
                                 class="badge rounded-pill text-white {{$project->status == 1 ? 'bg-success' : 'bg-danger'}}">{{ $project->getActive() }}</span>
                         </td>

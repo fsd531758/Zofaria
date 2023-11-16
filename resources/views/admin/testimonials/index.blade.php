@@ -58,7 +58,6 @@
                     <th>{{ __('words.image') }}</th>
                     <th>{{ __('words.title') }}</th>
                     <th>{{ __('words.job_title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     <th>{{ __('words.status') }}</th>
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -91,7 +90,6 @@
                         </td>
                         <td>{{ $testimonial->title }}</td>
                         <td>{{ $testimonial->job_title }}</td>
-                        <td>{!! Str::limit($testimonial->description, 100) !!}</td>
                         <td><span
                                 class="badge rounded-pill text-white {{$testimonial->status == 1 ? 'bg-success' : 'bg-danger'}}">{{ $testimonial->getActive() }}</span>
                         </td>

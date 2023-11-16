@@ -58,7 +58,6 @@
                     <th>{{ __('words.image') }}</th>
                     <th>{{ __('words.title') }}</th>
                     <th>{{ __('words.sub_title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     <th>{{ __('words.status') }}</th>
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -90,7 +89,6 @@
                         </td>
                         <td>{{ $team->title }}</td>
                         <td>{{ $team->sub_title }}</td>
-                        <td>{!! Str::limit($team->description, 100) !!}</td>
                         <td><span
                                 class="badge rounded-pill text-white {{$team->status == 1 ? 'bg-success' : 'bg-danger'}}">{{ $team->getActive() }}</span>
                         </td>

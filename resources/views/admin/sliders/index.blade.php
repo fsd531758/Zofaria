@@ -57,7 +57,6 @@
                     <th>#</th>
                     <th>{{ __('words.image') }}</th>
                     <th>{{ __('words.title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     <th>{{ __('words.status') }}</th>
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -89,7 +88,6 @@
                             @endif
                         </td>
                         <td>{{ $slider->title }}</td>
-                        <td>{!! $slider->description !!}</td>
                         <td><span
                                 class="badge rounded-pill text-white {{$slider->status == 1 ? 'bg-success' : 'bg-danger'}}">{{ $slider->getActive() }}</span>
                         </td>

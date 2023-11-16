@@ -57,7 +57,6 @@
                     <th>#</th>
                     <th>{{ __('words.image') }}</th>
                     <th>{{ __('words.title') }}</th>
-                    <th>{{ __('words.description') }}</th>
                     <th>{{ __('words.status') }}</th>
                     <th>{{ __('words.created_at') }}</th>
                     <th>{{ __('words.updated_at') }}</th>
@@ -88,7 +87,6 @@
                             @endif
                         </td>
                         <td>{{ $blog->title }}</td>
-                        <td>{!! $blog->description !!}</td>
                         <td><span
                                 class="badge rounded-pill text-white {{$blog->status == 1 ? 'bg-success' : 'bg-danger'}}">{{ $blog->getActive() }}</span>
                         </td>
