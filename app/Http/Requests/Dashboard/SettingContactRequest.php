@@ -14,7 +14,7 @@ class SettingContactRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            "type" => "required|string|in:telephone,mobile,email,social",
+            "type" => "required|string|in:telephone,mobile,email,social,whatsapp",
             "icon" => "required_without:id|string|min:2|max:50",
         ];
 
