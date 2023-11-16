@@ -736,6 +736,18 @@
                 @endpermission
                 {{-- course routes end --}}
 
+                {{-- contact_requests route start --}}
+                @permission('read-contact_us')
+                <li class="menu-item {{ request()->routeIs('contact_requests.*') ? 'menu-item-active' : '' }}"
+                    aria-haspopup="true">
+                    <a href="{{ route('contact_requests.index') }}" class="menu-link">
+                        <i class="fas fa-comment-alt svg-icon menu-icon"></i>
+                        <span class="menu-text">{{ __('words.contact_requests') }}</span>
+                    </a>
+                </li>
+                @endpermission
+                {{-- contact_requests route end --}}
+
                 {{-- news letter routes start --}}
                 @permission('read-news_letters')
                 <li class="menu-item menu-item-submenu {{ request()->routeIs('news-letters.*') ? 'menu-item-open menu-item-here' : '' }}"

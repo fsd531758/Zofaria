@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LaratrustSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(SettingSeeder::class);
-        NewsLetter::factory(6000)->create();
+        $this->call(SettingContactSeeder::class);
+//        NewsLetter::factory(6000)->create();
     }
 }

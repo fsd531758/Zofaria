@@ -75,6 +75,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             //setting routes
             Route::resource('settings', 'SettingController');
 
+            //contact_requests routes
+            Route::resource('contact_requests', 'ContactRequestController');
+            Route::get('contact_requests/{contact_request}/reply', 'ContactRequestController@reply')->name('contact_requests.reply');
+            Route::post('contact_requests/{contact_request}/send_mail', 'ContactRequestController@send_mail')->name('contact_requests.send_mail');
+
             //course routes
             Route::get('courses', 'CourseController@index')->name('courses.index');
             Route::get('courses/{id}/show', 'CourseController@index')->name('courses.show');

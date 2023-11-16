@@ -198,6 +198,12 @@ return [
     "edit_faq" => "Edit FAQ",
     "create_faq" => "Create FAQ",
 
+    "media_centers" => "Media Centers",
+    "show_media_centers" => "Show Media Centers",
+    "show_media_center" => "Show Video",
+    "edit_media_center" => "Edit Video",
+    "create_media_center" => "Create Video",
+
     "contact" => "Contact",
     "contacts" => "Contacts",
     "show_contacts" => "Show Contacts",
@@ -224,6 +230,11 @@ return [
     "subscribed" => "Subscribed Users",
 
     "contact_details" => "Contact Details",
+    "contact_us" => "Contact Us",
+    "contact_requests" => "Contact Requests",
+    "show_contact_requests" => "Show Contact Requests",
+    "reply_msg" => "Reply Message",
+    "reply_content" => "Reply Content",
     "contact_request" => "Contact request from: ",
     "message" => "Message",
     "rights" => "All Rights Reserved By ",

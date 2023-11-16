@@ -197,6 +197,12 @@ return [
     "edit_faq" => "تعديل السؤال",
     "create_faq" => "إنشاء سؤال",
 
+    "media_centers" => "المركز الإعلامي",
+    "show_media_centers" => "عرض المركز الإعلامي",
+    "show_media_center" => "عرض الفيديو",
+    "edit_media_center" => "تعديل الفيديو",
+    "create_media_center" => "إنشاء قيديو",
+
     "contact" => "وسيلة الإتصال",
     "contacts" => "وسائل الإتصال",
     "show_contacts" => "عرض وسائل إتصال",
@@ -223,6 +229,11 @@ return [
     "subscribed" => "المشتركين فى القوائم البريدية",
 
     "contact_details" => "تفاصيل الإتصال",
+    "contact_us" => "تواصل معنا",
+    "contact_requests" => "طلبات التواصل",
+    "show_contact_requests" => "عرض طلبات التواصل",
+    "reply_msg" => "الرد على الرسالة",
+    "reply_content" => "محتوى الرد",
     "contact_request" => "طلب إتصال مقدم من: ",
     "message" => "الرسالة",
     "rights" => "جميع الحقوق محفوظة بواسطة ",
