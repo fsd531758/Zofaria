@@ -10,8 +10,7 @@ class SliderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'media' => $this->image ,
-            'type'=>$this->file()->first()->type === 'image' ? 'image' : 'video' ,
+            'image' => $this->image ,
             'title' => $this->title,
             'description' => $this->description
         ];

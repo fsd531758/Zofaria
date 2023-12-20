@@ -74,6 +74,7 @@ return [
     "question" => "السؤال",
     "answer" => "الإجابة",
     "has_link" => "يوجد رابط",
+    "has_title" => "يوجد عنوان",
     "has_sub_title" => "يوجد عنوان فرعي",
     "has_description" => "يوجد وصف",
     "has_image" => "يوجد صورة",
@@ -159,6 +160,27 @@ return [
     "show_service" => "عرض الخدمة",
     "edit_service" => "تعديل الخدمة",
     "create_service" => "إنشاء خدمة",
+
+    "clients" => "العملاء",
+    "show_clients" => "عرض العملاء",
+    "show_client" => "عرض العميل",
+    "edit_client" => "تعديل العميل",
+    "create_client" => "إنشاء عميل",
+
+    "number" => "الرقم",
+    "counters" => "العدادات",
+    "counter" => "العداد",
+    "show_counters" => "عرض العدادات",
+    "show_counter" => "عرض العداد",
+    "edit_counter" => "تعديل العداد",
+    "create_counter" => "إنشاء عداد",
+
+    "features" => "المميزات",
+    "feature" => "الميزة",
+    "show_features" => "عرض المميزات",
+    "show_feature" => "عرض الميزة",
+    "edit_feature" => "تعديل الميزة",
+    "create_feature" => "إنشاء ميزة",
 
     "partners" => "الشركاء",
     "show_partners" => "عرض الشركاء",
@@ -305,5 +327,5 @@ return [
     "delete_subscribed_users" => "حذف المستخدمين المشتركين",
     "contact_email" => "البريد الالكتروني الافتراضي للإرسال والآستقبال الخاص بالاتصال",
     "newsletter_email" => "البريد الالكتروني الافتراضي للإرسال والآستقبال الخاص بالقائمة البريدية",
-    "whatsapp"=>"واتساب",
+    "whatsapp" => "واتساب",
 ];

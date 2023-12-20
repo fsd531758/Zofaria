@@ -31,22 +31,25 @@
             <div class="card-title">
                 <h3 class="card-label">{{ __('words.edit_page') }}</h3>
             </div>
-            <div class="card-toolbar">
-                <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                    @foreach (config('translatable.locales') as $key => $locale)
-                        <li class="nav-item">
-                            <a class="nav-link  @if ($key == 0) active @endif" data-toggle="tab"
-                               href="{{ '#' . $locale }}">{{ __('words.locale-' . $locale) }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+            @if(!config('translatable.locales') === 1)
+                <div class="card-toolbar">
+                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                        @foreach (config('translatable.locales') as $key => $locale)
+                            <li class="nav-item">
+                                <a class="nav-link  @if ($key == 0) active @endif" data-toggle="tab"
+                                   href="{{ '#' . $locale }}">{{ __('words.locale-' . $locale) }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
         <div class="card-body">
             <div class="tab-content">
                 @foreach (config('translatable.locales') as $key => $locale)
                     <div class="tab-pane fade show @if ($key == 0) active @endif"
                          id="{{ $locale }}" role="tabpanel">
+                        @if ($page->has_title == true)
                         <div class="col form-group">
                             <label>{{ __('words.title') }} - {{ __('words.locale-' . $locale) }}<span
                                     class="text-danger">
@@ -66,6 +69,7 @@
                                 @enderror
                             </div>
                         </div>
+                        @endif
                         @if ($page->has_sub_title == true)
                             <div class="col form-group">
                                 <label>{{ __('words.sub_title') }} - {{ __('words.locale-' . $locale) }}<span

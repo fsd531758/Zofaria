@@ -30,16 +30,18 @@
             <div class="card-title">
                 <h3 class="card-label">{{ __('words.create_page') }}</h3>
             </div>
-            <div class="card-toolbar">
-                <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                    @foreach (config('translatable.locales') as $key => $locale)
-                        <li class="nav-item">
-                            <a class="nav-link  @if ($key == 0) active @endif" data-toggle="tab"
-                               href="{{ '#' . $locale }}">{{ __('words.locale-' . $locale) }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+            @if(!config('translatable.locales') === 1)
+                <div class="card-toolbar">
+                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                        @foreach (config('translatable.locales') as $key => $locale)
+                            <li class="nav-item">
+                                <a class="nav-link  @if ($key == 0) active @endif" data-toggle="tab"
+                                   href="{{ '#' . $locale }}">{{ __('words.locale-' . $locale) }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
         <div class="card-body">
             <div class="tab-content">
@@ -109,6 +111,23 @@
         <div class="card-body">
            <div class="container-fluid">
                <div class="row">
+                   {{-- Has Title start --}}
+                   <div class="col form-group">
+                       <div class="form-check">
+                           <input class="form-check-input" type="checkbox" name="has_title" value="1"
+                                  {{old('has_title') ? "checked" : ""}} id="has_title">
+                           @error('has_title')
+                           <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                           @enderror
+                           <label class="form-check-label" for="flexCheckDefault">
+                               {{ __('words.has_title') }}
+                           </label>
+                       </div>
+                   </div>
+                   {{-- Has Title end --}}
+
                    {{-- Has Subtitle start --}}
                    <div class="col form-group">
                        <div class="form-check">
