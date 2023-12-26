@@ -85,7 +85,7 @@ class AuthController extends Controller
     public function register(UserRegisterRequest $request)
     {
         try {
-            $validator = $request->except(["profile_image"]);
+            $validator = $request->except(["profile_image","password_confirmation"]);
             $default_img = "default-profile-image.png";
 
             if ($request->has("profile_image")) {
