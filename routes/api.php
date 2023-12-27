@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'APILocalization'], function () {
     Route::group(['namespace' => 'Auth'], function () {
         Route::post('register', 'AuthController@register');
+        Route::post('refresh', 'AuthController@refresh');
         Route::get('user/verify/{verification_code}', 'AuthController@verifyUser')->name('user.verify');
         Route::post('login', 'AuthController@login');
         Route::post('forgot-password', 'AuthController@forgetPassword');
