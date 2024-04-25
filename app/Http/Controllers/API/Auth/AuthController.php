@@ -10,11 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\Concerns\Has;
-use Illuminate\Validation\Rule;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -75,9 +71,9 @@ class AuthController extends Controller
             "access_token" => $token,
             "token_type" => "bearer",
             "expires_in" =>
-                auth("api")
-                    ->factory()
-                    ->getTTL() * 60,
+            auth("api")
+                ->factory()
+                ->getTTL() * 60,
         ]);
     }
 
@@ -85,7 +81,7 @@ class AuthController extends Controller
     public function register(UserRegisterRequest $request)
     {
         try {
-            $validator = $request->except(["profile_image","password_confirmation"]);
+            $validator = $request->except(["profile_image", "password_confirmation"]);
             $default_img = "default-profile-image.png";
 
             if ($request->has("profile_image")) {
@@ -130,9 +126,9 @@ class AuthController extends Controller
             if ($request->has("profile_image")) {
                 $image_path = public_path("uploads/");
                 if (
-                File::exists(
-                    $image_path . $user->getRawOriginal("profile_image")
-                )
+                    File::exists(
+                        $image_path . $user->getRawOriginal("profile_image")
+                    )
                 ) {
                     File::delete(
                         $image_path . $user->getRawOriginal("profile_image")
