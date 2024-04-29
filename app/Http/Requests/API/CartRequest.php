@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-class OrderRequest extends FormRequest
+class CartRequest extends FormRequest
 {
     public function authorize()
     {
@@ -16,11 +16,8 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'userId' => 'required|integer',
-            'city' => 'required|string',
-            'postal_code' => 'required|string',
-            'country' => 'required|string',
-            'address' => 'required|string',
+
+            'userId' => 'integer',
         ];
     }
 

@@ -2,11 +2,13 @@
 
 return [
 
-    'no_result' => 'Error : No result found !','not_exist_in_offer' => 'It was not found in the discount card offers of Mowater',
+    'no_result' => 'Error : No result found !', 'not_exist_in_offer' => 'It was not found in the discount card offers of Mowater',
     'user_not_registered' => 'User not registered',
     'not_available' => 'Not available',
     'not_active' => 'Not active',
     'doesnt_exist' => 'record does not exist',
+    "user_doesn't_exist" => 'user record does not exist',
+    "product_doesn't_exist" => 'product record does not exist',
     'created_successfully' => 'Created Successfully',
     'updated_successfully' => 'Updated Successfully',
     'deleted_successfully' => 'Deleted Successfully',

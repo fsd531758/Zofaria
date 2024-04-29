@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->float('total_price')->nullable();
-            $table->string('payment_status');
+            //     $table->string('payment_status');
             $table->string('address');
-            $table->string("payment_method");
+            //    $table->string("payment_method");
             $table->float('shipping_price');
             $table->string('city');
             $table->string('postal_code');

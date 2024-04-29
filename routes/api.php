@@ -30,6 +30,7 @@ Route::group(['middleware' => 'APILocalization'], function () {
     Route::post('add-to-cart', 'OrderController@add_to_cart');
     Route::post('remove-from-cart', 'OrderController@remove_from_cart');
     Route::post('create-order', 'OrderController@create_order');
+    Route::get('get-cart-items/{userId}', 'OrderController@get_cart_items');
 
     // services route
     Route::get('services', 'ServiceController');

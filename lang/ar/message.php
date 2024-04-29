@@ -7,6 +7,8 @@ return [
     'not_available' => 'غير متاح',
     'not_active' => 'غير مفعل',
     'doesnt_exist' => 'السجل غير موجود',
+    "user_doesn't_exist" => 'هذا المستخدم غير موجود',
+    "product_doesn't_exist" => 'هذا المنتج غير موجود',
     'created_successfully' => 'تم الإنشاء بنجاح',
     'updated_successfully' => 'تم التحديث بنجاح',
     'deleted_successfully' => 'تم الحذف بنجاح',
@@ -20,4 +22,3 @@ return [
     'unsubscribed' => 'تم إلغاء الاشتراك بنجاح',
     'reply' => 'تم الرد بنجاح',
 ];
-

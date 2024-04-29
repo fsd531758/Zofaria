@@ -9,7 +9,7 @@ class ProductQuality extends Model
 {
     use HasFactory;
     protected $fillable = ['id', 'product_id', 'quality'];
-    protected $table = 'product_qualities';
+    protected $table = 'qualities';
 
     public function product()
     {

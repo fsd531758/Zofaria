@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\CartRequest;
 use App\Http\Requests\API\OrderRequest;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\ProductQualitySize;
 use App\Models\TemporaryCart;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -16,64 +20,110 @@ class OrderController extends Controller
     public function create_order(OrderRequest $request)
     {
         try {
-
+            DB::beginTransaction();
             $total = 0;
-            $items = TemporaryCart::where("user_id", $request->userId)->get();
-            foreach ($items as $item) {
-                return $this->check_product_existance($item->product_id);
+            $user = $this->check_user_exist($request->userId);
+            if ($user["user"] == null) {
+                return $user["message"];
             }
-            $order = Order::create(["total" => $total, "user_id" => $request->userId]);
-            $product = $this->getProductData($request->item);
-            $order->products()->attach($product->id, []);
-
+            $items = TemporaryCart::where("user_id", $request->userId)->get();
+            $prices = [];
+            foreach ($items as $item) {
+                $record = $this->get_product_quality_size($item->product_id);
+                if ($record["record"] == null) {
+                    return $record["message"];
+                }
+                // add server validation  to quantity and apply discount
+                $product_quality_size = ($record["record"] !== null) ? $record["record"] : json_decode('{}');
+                $prices[$item->product_id] = $product_quality_size->price_two;
+                $total += $item->quantity * $product_quality_size->price_two;
+            }
+            $shipping_price = 100;
+            $order = Order::create(["total_price" => $total, "address" => $request->address, "city" => $request->city, "postal_code" => $request->postal_code, "shipping_price" => $shipping_price, "country" => $request->country, "user_id" => $request->userId]);
+            foreach ($items as $item) {
+                OrderProduct::create(['order_id' => $order->id, "product_quality_size_id" => $item->product_id, "price" => $prices[$item->product_id], "quantity" => $item->quantity]);
+            }
+            DB::commit();
             return successResponse(["order" => $order], "success", 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return failureResponse([], __("message.something_wrong"), 400);
+        }
+    }
+    public function get_product_quality_size($product_id)
+    {
+        $record = ProductQualitySize::where('id', $product_id)->first();
+        if ($record == null) {
+            return ["record" => $record, "message" => failureResponse([], __("message.doesn't_exist"), 400)];
+        }
+        return ["record" => $record];
+    }
+    public function check_product_exist($product_id)
+    {
+        $product = $this->getProductData($product_id);
+        if ($product == null) {
+            return ["product" => $product, "message" => failureResponse([], __("message.product_doesn't_exist"), 400)];
+        }
+        return ["product" => $product];
+    }
+    public function check_user_exist($user_id)
+    {
+        $user = $this->getUserData($user_id);
+        if ($user == null) {
+            return ["user" => $user, "message" => failureResponse([], __("message.user_doesn't_exist"), 400)];
+        }
+        return ["user" => $user];
+    }
+
+    public function get_cart_items($userId)
+    {
+        try {
+            $user = $this->check_user_exist($userId);
+            if ($user["user"] == null) {
+                return $user["message"];
+            }
+            $items = TemporaryCart::where("user_id", $userId)->get();
+            return $items;
+
         } catch (\Exception $e) {
             return $e;
         }
     }
-    public function check_product_existance($product_id)
-    {
-        $product = $this->getProductData($product_id);
-        if ($product == null) {
-            return failureResponse([], __("message.doesnt_exist", "table Product"), 400);
-        }
-    }
-    public function add_to_cart(OrderRequest $request)
+    public function add_to_cart(CartRequest $request)
     {
         try {
 
-            $product = $this->getProductData($request->item);
-            if ($product == null) {
-                return failureResponse([], __("message.doesnt_exist", "table product"), 400);
+            $product = $this->check_product_exist($request->item);
+            if ($product["product"] == null) {
+                return $product["message"];
             }
-            $product = $this->getProductData($request->item);
-            $user = $this->getUserData($request->userId);
-            if ($user == null) {
-                return failureResponse([], __("message.doesnt_exist", "table user"), 400);
+            $product = $product["product"];
+            $user = $this->check_user_exist($request->userId);
+            if ($user["user"] == null) {
+                return $user["message"];
             }
-            $cart = TemporaryCart::create(['user_id' => $user->id, "product_id" => $product->id, 'quantity' => $request->quantity]);
+            $cart = TemporaryCart::create(['user_id' => $user["user"]->id, "product_id" => $product->id, 'quantity' => $request->quantity]);
             return successResponse(["cart" => $cart], "success", 200);
         } catch (\Exception $e) {
             return failureResponse([], __("message.something_wrong"), 400);
         }
     }
-    public function remove_from_cart(OrderRequest $request)
+    public function remove_from_cart(CartRequest $request)
     {
         try {
-
-            $product = $this->getProductData($request->item);
-            if ($product == null) {
-                return failureResponse([], __("message.doesnt_exist", "table product"), 400);
+            $product = $this->check_product_exist($request->item);
+            if ($product["product"] == null) {
+                return $product["message"];
             }
-            $product = $this->getProductData($request->item);
-            $user = $this->getUserData($request->userId);
-            if ($user == null) {
-                return failureResponse([], __("message.doesnt_exist", "table user"), 400);
+            $product = $product["product"];
+            $user = $this->check_user_exist($request->userId);
+            if ($user["user"] == null) {
+                return $user["message"];
             }
-            $cart = TemporaryCart::where('user_id', $user->id)->where('product_id', $product->id)->delete();
+            $cart = TemporaryCart::where('user_id', $user['user']->id)->where('product_id', $product->id)->delete();
             return successResponse(["cart" => $cart], "success", 200);
         } catch (\Exception $e) {
-            return $e;
+            return failureResponse([], __("message.something_wrong"), 400);
         }
     }
 
@@ -81,14 +131,13 @@ class OrderController extends Controller
     {
         $product = Product::where("id", $productID)
             ->first();
-
         return $product;
     }
-    public function getUserData($productID)
+    public function getUserData($userID)
     {
-        $product = User::where("id", $productID)
+        $user = User::where("id", $userID)
             ->first();
 
-        return $product;
+        return $user;
     }
 }

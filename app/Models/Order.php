@@ -12,7 +12,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'user_id',
-        'total',
+        'total_price', 'address', 'shipping_price', 'city', 'postal_code', 'country',
     ];
 
     public $timestamps = true;
