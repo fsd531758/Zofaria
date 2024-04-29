@@ -23,8 +23,18 @@ class Product extends Model
     public $timestamps = true;
 
     // relations start
-    public function category(){
+    public function categories()
+    {
         return $this->belongsTo(Category::class);
+    }
+    public function productQuality()
+    {
+        return $this->hasMany(ProductQuality::class, 'product_id');
+    }
+
+    public function productSize()
+    {
+        return $this->hasMany(ProductSize::class, 'product_id');
     }
     // relations end
 

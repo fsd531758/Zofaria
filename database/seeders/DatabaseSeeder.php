@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\NewsLetter;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(SettingContactSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(ProductSeeder::class);
+        $this->call(ProductQualitySeeder::class);
+        $this->call(ProductSizeSeeder::class);
+        $this->call(ProductQualitySizeSeeder::class);
 //        NewsLetter::factory(6000)->create();
     }
 }

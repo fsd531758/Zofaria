@@ -24,7 +24,6 @@ class AuthController extends Controller
 //        $fieldType = filter_var($data, FILTER_VALIDATE_EMAIL)
 //            ? "email"
 //            : "phone";
-
             $credentials = [
 //            $fieldType => $data,
                 "email" => \request()->email,
@@ -35,6 +34,7 @@ class AuthController extends Controller
             if (!($token = auth("api")->attempt($credentials))) {
                 return failureResponse([], "Unauthorized", 400);
             }
+
             return successResponse(
                 [
                     "token" => $token,
@@ -62,7 +62,8 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        return $this->respondWithToken(auth("api")->refresh());
+        return "hello new world";
+        // $this->respondWithToken(auth("api")->refresh());
     }
 
     protected function respondWithToken($token)
@@ -83,13 +84,11 @@ class AuthController extends Controller
         try {
             $validator = $request->except(["profile_image", "password_confirmation"]);
             $default_img = "default-profile-image.png";
-
             if ($request->has("profile_image")) {
                 $image = $request->profile_image->store("profile_images");
                 $validator["profile_image"] = $image;
             }
             $validator["profile_image"] = $default_img;
-
             $user = User::create($validator);
             $token = JWTAuth::fromUser($user);
             return successResponse(

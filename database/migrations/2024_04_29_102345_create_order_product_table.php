@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_order', function (Blueprint $table) {
-            $table->id();
-            $table->integer('quantity')->nullable();
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->integer('product_quality_size_id')->unsigned();
+            $table->foreign('product_quality_size_id')->references('id')->on('product_quality_size');
+            $table->integer('quantity');
+            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('discount', 10, 2)->nullable();
             $table->timestamps();
         });
     }

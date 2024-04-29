@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'APILocalization'], function () {
@@ -12,8 +11,8 @@ Route::group(['middleware' => 'APILocalization'], function () {
         Route::post('forgot-password', 'AuthController@forgetPassword');
         Route::post('reset-forgot-password', 'AuthController@resetForgottenPassword');
         Route::post('update-token', 'AuthController@updateToken');
-    });
 
+    });
 
 // authenticated routes
     Route::group(['middleware' => ['jwt.verify:api']], function () {
@@ -28,6 +27,9 @@ Route::group(['middleware' => 'APILocalization'], function () {
 
     // home route
     Route::get('home', 'HomeController');
+    Route::post('add-to-cart', 'OrderController@add_to_cart');
+    Route::post('remove-from-cart', 'OrderController@remove_from_cart');
+    Route::post('create-order', 'OrderController@create_order');
 
     // services route
     Route::get('services', 'ServiceController');
@@ -37,4 +39,5 @@ Route::group(['middleware' => 'APILocalization'], function () {
 
     // Contact Request Route
     Route::post('contact', 'SettingController@contact');
+
 });
