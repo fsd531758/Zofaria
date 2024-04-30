@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductSize extends Model
+class BasicAttribute extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'product_id', 'size'];
-    protected $table = 'sizes';
+    protected $fillable = ['id', 'item_id', 'value', 'type', 'order'];
+    protected $table = 'basic_attributes';
 
     public function productQualitySize()
     {

@@ -39,10 +39,11 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         try {
-            if (!$request->has('status'))
+            if (!$request->has('status')) {
                 $request->request->add(['status' => 0]);
-            else
+            } else {
                 $request->request->add(['status' => 1]);
+            }
 
             $requested_data = $request->except(['_token', 'profile_avatar_remove', 'image']);
             $category = $this->category->create($requested_data);
@@ -67,14 +68,15 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         try {
-            if (!$request->has('status'))
+            if (!$request->has('status')) {
                 $request->request->add(['status' => 0]);
-            else
+            } else {
                 $request->request->add(['status' => 1]);
+            }
 
-            $requested_data = $request->except(['_token', 'profile_avatar_remove', 'image','deleteFile']);
+            $requested_data = $request->except(['_token', 'profile_avatar_remove', 'image', 'deleteFile']);
             $requested_data['updated_at'] = Carbon::now();
-            if ($request->has('deleteFile')){
+            if ($request->has('deleteFile')) {
                 $category->deleteFile();
             }
             $category->update($requested_data);

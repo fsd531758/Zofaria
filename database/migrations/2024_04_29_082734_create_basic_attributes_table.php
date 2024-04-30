@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_qualities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->string('quality');
+        Schema::create('basic_attributes', function (Blueprint $table) {
+            $table->id();
+            $table->string('item_id');
+            $table->string("value");
+            $table->unsignedBigInteger("type");
+            $table->foreign('type')->references('id')->on('basic_attributes');
+            $table->integer("order");
             $table->timestamps();
         });
     }
@@ -29,6 +31,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product__quality');
+        Schema::dropIfExists('basic_attributes');
+
     }
 };

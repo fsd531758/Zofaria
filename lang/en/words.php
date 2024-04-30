@@ -102,6 +102,9 @@ return [
     "mobile" => "Mobile",
     "telephone" => "Telephone",
     "map" => "Map Link",
+    "value" => "Value",
+    "type" => "Type",
+    "order" => "Order",
 
     "title" => "Title",
     "sub_title" => "Sub Title",
@@ -155,6 +158,12 @@ return [
     "show_product" => "Show Product",
     "edit_product" => "Edit Product",
     "create_product" => "Create Product",
+
+    "basic_attributes" => "Basic Attributes",
+    "show_basic_attributes" => "Show Basic Attributes",
+    "show_basic_attribute" => "Show Basic Attribute",
+    "edit_basic_attribute" => "Edit Basic Attribute",
+    "create_basic_attribute" => "Create Basic Attribute",
 
     "services" => "Services",
     "show_services" => "Show Services",

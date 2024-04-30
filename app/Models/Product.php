@@ -27,15 +27,11 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function productQuality()
+    public function productQualitySize()
     {
-        return $this->hasMany(ProductQuality::class, 'product_id');
+        return $this->hasMany(ProductQualitySize::class, 'product_id');
     }
 
-    public function productSize()
-    {
-        return $this->hasMany(ProductSize::class, 'product_id');
-    }
     // relations end
 
     // Scopes start

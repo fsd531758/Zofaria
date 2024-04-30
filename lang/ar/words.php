@@ -109,6 +109,10 @@ return [
     "release_date" => "تاريخ الإصدار",
     "select_date" => "حدد التاريخ",
 
+    "value" => "القيمة",
+    "type" => "النوع",
+    "order" => "الترتيب",
+
     "title" => "العنوان",
     "sub_title" => "العنوان الفرعي",
     "job_title" => "المسمى الوظيفي",
@@ -154,6 +158,12 @@ return [
     "show_product" => "عرض المنتج",
     "edit_product" => "تعديل المنتج",
     "create_product" => "إنشاء منتج",
+
+    "basic_attributes" => "الصفات الاساسية",
+    "show_basic_attributes" => "عرض الصفات الاساسية",
+    "show_basic_attribute" => "عرض الصفة",
+    "edit_basic_attribute" => "تعديل الصفة",
+    "create_basic_attribute" => "إنشاء الصفة",
 
     "services" => "الخدمات",
     "show_services" => "عرض الخدمات",

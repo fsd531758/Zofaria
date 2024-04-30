@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -48,10 +47,11 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            if (!$request->has('status'))
+            if (!$request->has('status')) {
                 $request->request->add(['status' => 0]);
-            else
+            } else {
                 $request->request->add(['status' => 1]);
+            }
 
             $requested_data = $request->except(['_token', 'profile_avatar_remove', 'image', 'files']);
             $product = $this->product->create($requested_data);
@@ -88,10 +88,11 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         try {
-            if (!$request->has('status'))
+            if (!$request->has('status')) {
                 $request->request->add(['status' => 0]);
-            else
+            } else {
                 $request->request->add(['status' => 1]);
+            }
 
             $requested_data = $request->except(['_token', 'profile_avatar_remove', 'image', 'files', 'deleted_files']);
             $requested_data['updated_at'] = Carbon::now();

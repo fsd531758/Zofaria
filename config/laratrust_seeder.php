@@ -4,6 +4,7 @@ return [
         "roles" => ["read", "create", "update", "delete"],
         "admins" => ["read", "create", "update", "delete", "updateProfile"],
         "sliders" => ["read", "create", "update", "delete"],
+        "basic_attributes" => ["read", "create", "update", "delete"],
         "features" => ["read", "update"],
         "counters" => ["read", "update"],
         "clients" => ["read", "create", "update", "delete"],
@@ -23,6 +24,6 @@ return [
         "courses" => ["read", "create", "export"],
         "contact_us" => ["read", "delete", "reply"],
         "news_letters" => ["read", "show_subscribed_users", "delete_subscribed_users", "create", "resend", "delete",
-        ]
+        ],
     ],
 ];

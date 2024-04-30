@@ -15,21 +15,22 @@ class ProductQualitySizeSeeder extends Seeder
     public function run()
     {
         $data = [
-            [3, 1, 10, 1200, 10, 1],
-            [3, 2, 10, 1200, 10, 1],
-            [3, 3, 5, 1200, 10, 1],
-            [1, 1, 7, 600, 10, 1],
+            [4, 6, 1, 10, 1200, 10, 1],
+            [4, 6, 1, 10, 1200, 10, 1],
+            [4, 6, 2, 5, 1200, 10, 1],
+            [4, 6, 2, 7, 600, 10, 1],
 
         ];
 
         foreach ($data as $item) {
             $product_quality_size = ProductQualitySize::create([
-                'product_size_id' => $item[0],
-                'product_quality_id' => $item[1],
-                'quantity' => $item[2],
-                'price_two' => $item[3],
-                'discount' => $item[4],
-                'status' => $item[5],
+                'size_id' => $item[0],
+                'quality_id' => $item[1],
+                'product_id' => $item[2],
+                'quantity' => $item[3],
+                'price_two' => $item[4],
+                'discount' => $item[5],
+                'status' => $item[6],
             ]);
         }
     }

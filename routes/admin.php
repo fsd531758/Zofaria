@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::prefix('dashboard')->group(function () {
@@ -15,7 +14,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
         Route::middleware(['auth:admin'])->group(function () {
             Route::get('/', 'Auth\AuthController@home')->name('admin.home');
             Route::get('logout', 'Auth\AuthController@logout')->name('admin.logout');
-
 
             //role routes
             Route::resource('roles', 'RoleController');
@@ -83,6 +81,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             //setting routes
             Route::resource('settings', 'SettingController');
 
+            //basic_attributes routes
+            Route::resource('basic-attributes', 'BasicAttributeController');
+
             //contact_requests routes
             Route::resource('contact_requests', 'ContactRequestController');
             Route::get('contact_requests/{contact_request}/reply', 'ContactRequestController@reply')->name('contact_requests.reply');
@@ -100,6 +101,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 Route::get('unsubscribe/{id}', 'NewsLetterController@unsubscribe')->name('news-letters.unsubscribe');
 Route::post('unsubscribe/action', 'NewsLetterController@unsubscribeAction')->name('news-letters.unsubscribe_action');
-Route::get('unsubscribe/confirmation', function (){
+Route::get('unsubscribe/confirmation', function () {
     return view('admin.news_letters.unsubscribe_confirmation');
 })->name('news-letters.unsubscribe_confirmation');

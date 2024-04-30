@@ -7,7 +7,6 @@ use App\Http\Requests\API\CartRequest;
 use App\Http\Requests\API\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
-use App\Models\Product;
 use App\Models\ProductQualitySize;
 use App\Models\TemporaryCart;
 use App\Models\User;
@@ -29,12 +28,12 @@ class OrderController extends Controller
             $items = TemporaryCart::where("user_id", $request->userId)->get();
             $prices = [];
             foreach ($items as $item) {
-                $record = $this->get_product_quality_size($item->product_id);
-                if ($record["record"] == null) {
+                $record = $this->check_product_exist($item->product_id);
+                if ($record["product"] == null) {
                     return $record["message"];
                 }
                 // add server validation  to quantity and apply discount
-                $product_quality_size = ($record["record"] !== null) ? $record["record"] : json_decode('{}');
+                $product_quality_size = ($record["product"] !== null) ? $record["product"] : json_decode('{}');
                 $prices[$item->product_id] = $product_quality_size->price_two;
                 $total += $item->quantity * $product_quality_size->price_two;
             }
@@ -49,14 +48,6 @@ class OrderController extends Controller
             DB::rollBack();
             return failureResponse([], __("message.something_wrong"), 400);
         }
-    }
-    public function get_product_quality_size($product_id)
-    {
-        $record = ProductQualitySize::where('id', $product_id)->first();
-        if ($record == null) {
-            return ["record" => $record, "message" => failureResponse([], __("message.doesn't_exist"), 400)];
-        }
-        return ["record" => $record];
     }
     public function check_product_exist($product_id)
     {
@@ -129,7 +120,7 @@ class OrderController extends Controller
 
     public function getProductData($productID)
     {
-        $product = Product::where("id", $productID)
+        $product = ProductQualitySize::where("id", $productID)
             ->first();
         return $product;
     }

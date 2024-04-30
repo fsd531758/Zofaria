@@ -11,13 +11,13 @@ class ProductQualitySize extends Model
     protected $fillable = ['product_size_id', 'product_quality_id', 'quantity', 'price_two', 'discount', 'status'];
     protected $table = 'product_quality_size';
 
-    public function productQuality()
+    public function basicAttribute()
     {
-        return $this->belongsTo(ProductQuality::class);
+        return $this->belongsTo(BasicAttribute::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
-    public function productSize()
-    {
-        return $this->belongsTo(ProductSize::class);
-    }
 }
